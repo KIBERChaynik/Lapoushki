@@ -1,0 +1,1473 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лапоушки — Зоомагазин в Калининграде</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #FF6B35;
+            --primary-dark: #E5552A;
+            --secondary: #4A90D9;
+            --accent: #FFD166;
+            --bg-light: #FFF8F0;
+            --bg-white: #FFFFFF;
+            --text-dark: #2D2D2D;
+            --text-medium: #5A5A5A;
+            --text-light: #8A8A8A;
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.08);
+            --shadow-md: 0 4px 20px rgba(0,0,0,0.12);
+            --shadow-lg: 0 8px 40px rgba(0,0,0,0.16);
+            --radius: 16px;
+            --radius-lg: 24px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: var(--bg-light);
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        /* NAV */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            box-shadow: var(--shadow-sm);
+        }
+
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 72px;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--text-dark);
+        }
+
+        .nav-logo-icon {
+            width: 42px;
+            height: 42px;
+            background: var(--primary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            color: white;
+            box-shadow: 0 2px 10px rgba(255, 107, 53, 0.3);
+        }
+
+        .nav-logo-text {
+            font-weight: 800;
+            font-size: 22px;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-medium);
+            font-weight: 600;
+            font-size: 15px;
+            transition: color 0.2s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            border-radius: 1px;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-phone {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 700;
+            font-size: 15px;
+            padding: 8px 18px;
+            border: 2px solid var(--primary);
+            border-radius: 50px;
+            transition: all 0.2s;
+        }
+
+        .nav-phone:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
+        }
+
+        .burger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 8px;
+            background: none;
+            border: none;
+        }
+
+        .burger span {
+            width: 24px;
+            height: 2.5px;
+            background: var(--text-dark);
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+
+        .burger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .burger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .burger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* HERO */
+        .hero {
+            padding: 140px 24px 80px;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .hero-content {
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, rgba(255,107,53,0.1), rgba(255,209,102,0.15));
+            padding: 8px 18px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 24px;
+        }
+
+        .hero-badge-dot {
+            width: 8px;
+            height: 8px;
+            background: #4CAF50;
+            border-radius: 50%;
+            animation: pulse-dot 2s infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.3); }
+        }
+
+        .hero h1 {
+            font-size: clamp(36px, 5vw, 58px);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            letter-spacing: -1.5px;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--primary), #FF8F5E);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-desc {
+            font-size: 18px;
+            color: var(--text-medium);
+            line-height: 1.7;
+            margin-bottom: 36px;
+            max-width: 480px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 700;
+            font-size: 16px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            box-shadow: 0 4px 16px rgba(255, 107, 53, 0.35);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(255, 107, 53, 0.45);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--text-dark);
+            box-shadow: var(--shadow-sm);
+            border: 2px solid rgba(0,0,0,0.08);
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .hero-images {
+            position: relative;
+            animation: fadeInRight 0.8s ease 0.2s both;
+        }
+
+        .hero-img-main {
+            width: 100%;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            object-fit: cover;
+            aspect-ratio: 4/3;
+        }
+
+        .hero-img-float {
+            position: absolute;
+            bottom: -30px;
+            left: -30px;
+            width: 180px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-lg);
+            border: 4px solid white;
+            object-fit: cover;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .hero-stats {
+            position: absolute;
+            top: -20px;
+            right: -10px;
+            background: white;
+            padding: 16px 20px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-md);
+            animation: float 4s ease-in-out 1s infinite;
+        }
+
+        .hero-stats-number {
+            font-size: 28px;
+            font-weight: 900;
+            color: var(--primary);
+        }
+
+        .hero-stats-label {
+            font-size: 12px;
+            color: var(--text-light);
+            font-weight: 600;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInRight {
+            from { opacity: 0; transform: translateX(30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        /* SECTIONS */
+        section {
+            padding: 100px 24px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-tag {
+            display: inline-block;
+            font-size: 13px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--primary);
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-size: clamp(28px, 4vw, 42px);
+            font-weight: 900;
+            letter-spacing: -1px;
+            margin-bottom: 16px;
+        }
+
+        .section-subtitle {
+            font-size: 17px;
+            color: var(--text-medium);
+            max-width: 560px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* FEATURES */
+        .features {
+            background: white;
+        }
+
+        .features-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 28px;
+        }
+
+        .feature-card {
+            padding: 36px 28px;
+            border-radius: var(--radius-lg);
+            background: var(--bg-light);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .feature-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            margin-bottom: 20px;
+        }
+
+        .feature-icon-orange { background: rgba(255,107,53,0.12); }
+        .feature-icon-blue { background: rgba(74,144,217,0.12); }
+        .feature-icon-green { background: rgba(76,175,80,0.12); }
+        .feature-icon-purple { background: rgba(156,39,176,0.12); }
+
+        .feature-card h3 {
+            font-size: 19px;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .feature-card p {
+            font-size: 15px;
+            color: var(--text-medium);
+            line-height: 1.6;
+        }
+
+        /* HOURS & CONTACT */
+        .contact-section {
+            background: white;
+        }
+
+        .contact-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .contact-card {
+            background: var(--bg-light);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+        }
+
+        .contact-card h3 {
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 28px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .contact-card h3 span {
+            font-size: 28px;
+        }
+
+        .hours-list {
+            list-style: none;
+        }
+
+        .hours-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+        }
+
+        .hours-item:last-child {
+            border-bottom: none;
+        }
+
+        .hours-day {
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .hours-time {
+            font-weight: 600;
+            color: var(--text-medium);
+        }
+
+        .hours-item.today {
+            background: linear-gradient(135deg, rgba(255,107,53,0.08), rgba(255,209,102,0.1));
+            margin: 0 -16px;
+            padding: 12px 16px;
+            border-radius: 12px;
+            border-bottom: none;
+        }
+
+        .hours-item.today .hours-day {
+            color: var(--primary);
+        }
+
+        .hours-item.today .hours-time {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .open-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(76,175,80,0.12);
+            color: #4CAF50;
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .open-badge-dot {
+            width: 7px;
+            height: 7px;
+            background: #4CAF50;
+            border-radius: 50%;
+            animation: pulse-dot 2s infinite;
+        }
+
+        .contact-info-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .contact-info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+
+        .contact-info-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            flex-shrink: 0;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .contact-info-label {
+            font-size: 13px;
+            color: var(--text-light);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+
+        .contact-info-value {
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .contact-info-value a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .contact-info-value a:hover {
+            text-decoration: underline;
+        }
+
+        /* MAP */
+        .map-container {
+            margin-top: 24px;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            height: 220px;
+            background: linear-gradient(135deg, #e8f4f8, #d1ecf1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .map-placeholder {
+            text-align: center;
+        }
+
+        .map-placeholder-icon {
+            font-size: 48px;
+            margin-bottom: 8px;
+        }
+
+        .map-placeholder-text {
+            font-weight: 700;
+            color: var(--text-medium);
+        }
+
+        /* REVIEWS */
+        .reviews {
+            background: var(--bg-light);
+        }
+
+        .reviews-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 28px;
+        }
+
+        .review-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+        }
+
+        .review-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .review-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 16px;
+        }
+
+        .review-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 800;
+            font-size: 20px;
+        }
+
+        .review-author {
+            flex: 1;
+        }
+
+        .review-name {
+            font-weight: 800;
+            font-size: 16px;
+        }
+
+        .review-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 12px;
+            color: var(--secondary);
+            font-weight: 700;
+            margin-top: 2px;
+        }
+
+        .review-date {
+            font-size: 13px;
+            color: var(--text-light);
+            font-weight: 600;
+        }
+
+        .review-stars {
+            display: flex;
+            gap: 3px;
+            margin-bottom: 14px;
+        }
+
+        .star {
+            color: #FFC107;
+            font-size: 18px;
+        }
+
+        .review-text {
+            font-size: 15px;
+            color: var(--text-medium);
+            line-height: 1.7;
+        }
+
+        .review-source {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 16px;
+            font-size: 12px;
+            color: var(--text-light);
+            font-weight: 600;
+        }
+
+        /* GALLERY */
+        .gallery {
+            background: white;
+        }
+
+        .gallery-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        .gallery-item {
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 24px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.5));
+            color: white;
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        /* CTA */
+        .cta {
+            background: linear-gradient(135deg, var(--primary), #FF8F5E);
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 500px;
+            height: 500px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 50%;
+        }
+
+        .cta::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 350px;
+            height: 350px;
+            background: rgba(255,255,255,0.06);
+            border-radius: 50%;
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .cta h2 {
+            font-size: clamp(28px, 4vw, 40px);
+            font-weight: 900;
+            margin-bottom: 16px;
+            letter-spacing: -1px;
+        }
+
+        .cta p {
+            font-size: 18px;
+            opacity: 0.9;
+            margin-bottom: 32px;
+            line-height: 1.6;
+        }
+
+        .btn-white {
+            background: white;
+            color: var(--primary);
+            font-weight: 800;
+            padding: 16px 40px;
+            font-size: 17px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+
+        .btn-white:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+        }
+
+        /* FOOTER */
+        .footer {
+            background: var(--text-dark);
+            color: white;
+            padding: 60px 24px 30px;
+        }
+
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-top {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .footer-logo-icon {
+            width: 42px;
+            height: 42px;
+            background: var(--primary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+        }
+
+        .footer-logo-text {
+            font-weight: 800;
+            font-size: 22px;
+        }
+
+        .footer-desc {
+            color: rgba(255,255,255,0.6);
+            font-size: 15px;
+            line-height: 1.6;
+            max-width: 360px;
+        }
+
+        .footer-heading {
+            font-weight: 800;
+            font-size: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            color: rgba(255,255,255,0.8);
+        }
+
+        .footer-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-links a {
+            color: rgba(255,255,255,0.6);
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .footer-copy {
+            color: rgba(255,255,255,0.4);
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 12px;
+        }
+
+        .footer-social {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: rgba(255,255,255,0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .footer-social:hover {
+            background: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        /* SCROLL ANIMATIONS */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* MOBILE NAV */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 72px;
+            left: 0;
+            right: 0;
+            background: white;
+            padding: 24px;
+            box-shadow: var(--shadow-md);
+            z-index: 999;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .mobile-menu.open {
+            display: flex;
+        }
+
+        .mobile-menu a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 700;
+            font-size: 17px;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                padding-top: 120px;
+                min-height: auto;
+            }
+
+            .hero-images {
+                order: -1;
+            }
+
+            .hero-img-float {
+                width: 130px;
+                left: -10px;
+                bottom: -20px;
+            }
+
+            .hero-stats {
+                right: 10px;
+                top: -10px;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links, .nav-phone {
+                display: none;
+            }
+
+            .burger {
+                display: flex;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .reviews-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                justify-content: center;
+            }
+
+            section {
+                padding: 60px 16px;
+            }
+        }
+
+        /* PAWS DECORATION */
+        .paw-decoration {
+            position: absolute;
+            font-size: 120px;
+            opacity: 0.03;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-inner">
+            <a href="#" class="nav-logo">
+                <div class="nav-logo-icon">🐾</div>
+                <div class="nav-logo-text">Лапоушки</div>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#features">О нас</a></li>
+                <li><a href="#gallery">Галерея</a></li>
+                <li><a href="#reviews">Отзывы</a></li>
+                <li><a href="#contact">Контакты</a></li>
+            </ul>
+            <a href="tel:+79527931212" class="nav-phone">
+                📞 +7 (952) 793-12-12
+            </a>
+            <button class="burger" id="burger" aria-label="Меню">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#features" onclick="closeMobile()">О нас</a>
+        <a href="#gallery" onclick="closeMobile()">Галерея</a>
+        <a href="#reviews" onclick="closeMobile()">Отзывы</a>
+        <a href="#contact" onclick="closeMobile()">Контакты</a>
+        <a href="tel:+79527931212">📞 +7 (952) 793-12-12</a>
+    </div>
+
+    <!-- HERO -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <div class="hero-badge-dot"></div>
+                Сейчас открыто
+            </div>
+            <h1>Всё лучшее<br>для <span>ваших питомцев</span></h1>
+            <p class="hero-desc">
+                Широкий выбор кормов, лакомств и аксессуаров для кошек и собак. 
+                Корма на развес, профессиональные консультации и забота о каждом хвостатом клиенте!
+            </p>
+            <div class="hero-buttons">
+                <a href="tel:+79527931212" class="btn btn-primary">
+                    📞 Позвонить нам
+                </a>
+                <a href="#contact" class="btn btn-secondary">
+                    📍 Как добраться
+                </a>
+            </div>
+        </div>
+        <div class="hero-images">
+            <img src="https://avatars.mds.yandex.net/get-altay/16136409/2a0000019995ade296970e5ba89733ad075f/XXXL" alt="Лапоушки зоомагазин" class="hero-img-main" loading="lazy">
+            <img src="https://avatars.mds.yandex.net/get-altay/16270073/2a0000019995ade57c0f40e2bf26bea8277b/XXXL" alt="Зоомагазин" class="hero-img-float" loading="lazy">
+            <div class="hero-stats">
+                <div class="hero-stats-number">⭐ 5.0</div>
+                <div class="hero-stats-label">Рейтинг на Яндекс</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="features" id="features">
+        <div class="section-header animate-on-scroll">
+            <div class="section-tag">Почему мы</div>
+            <h2 class="section-title">Наши преимущества</h2>
+            <p class="section-subtitle">Мы любим животных и знаем, что им нужно для счастья и здоровья</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card animate-on-scroll">
+                <div class="feature-icon feature-icon-orange">🥩</div>
+                <h3>Корма на развес</h3>
+                <p>Большой выбор качественных кормов на развес. Подберём идеальный вариант для вашего питомца по его потребностям.</p>
+            </div>
+            <div class="feature-card animate-on-scroll">
+                <div class="feature-icon feature-icon-blue">💊</div>
+                <h3>Ветеринарные товары</h3>
+                <p>Витамины, лекарства и средства для ухода. Всё необходимое для здоровья ваших четвероногих друзей.</p>
+            </div>
+            <div class="feature-card animate-on-scroll">
+                <div class="feature-icon feature-icon-green">🎾</div>
+                <h3>Игрушки и аксессуары</h3>
+                <p>Яркие игрушки, удобные лежаки, ошейники и поводки. Порадуйте своего питомца!</p>
+            </div>
+            <div class="feature-card animate-on-scroll">
+                <div class="feature-icon feature-icon-purple">💬</div>
+                <h3>Консультации</h3>
+                <p>Наши сотрудники помогут с выбором и расскажут обо всех особенностях питания для разных пород.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section class="gallery" id="gallery">
+        <div class="section-header animate-on-scroll">
+            <div class="section-tag">Галерея</div>
+            <h2 class="section-title">Наш магазин</h2>
+            <p class="section-subtitle">Загляните к нам — у нас уютно, а питомцы всегда рады!</p>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-item animate-on-scroll">
+                <img src="https://avatars.mds.yandex.net/get-altay/16136409/2a0000019995ade296970e5ba89733ad075f/XXXL" alt="Витрина магазина Лапоушки" loading="lazy">
+                <div class="gallery-overlay">Витрина с кормами</div>
+            </div>
+            <div class="gallery-item animate-on-scroll">
+                <img src="https://avatars.mds.yandex.net/get-altay/16270073/2a0000019995ade57c0f40e2bf26bea8277b/XXXL" alt="Товары для питомцев" loading="lazy">
+                <div class="gallery-overlay">Аксессуары и товары</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- REVIEWS -->
+    <section class="reviews" id="reviews">
+        <div class="reviews-container">
+            <div class="section-header animate-on-scroll">
+                <div class="section-tag">Отзывы</div>
+                <h2 class="section-title">Что говорят клиенты</h2>
+                <p class="section-subtitle">Нам доверяют сотни жителей Калининграда</p>
+            </div>
+            <div class="reviews-grid">
+                <div class="review-card animate-on-scroll">
+                    <div class="review-header">
+                        <div class="review-avatar">И</div>
+                        <div class="review-author">
+                            <div class="review-name">Иван П.</div>
+                            <div class="review-badge">⭐ Знаток города 3 уровня</div>
+                        </div>
+                        <div class="review-date">29 сентября 2025</div>
+                    </div>
+                    <div class="review-stars">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                    </div>
+                    <p class="review-text">Отличный магазин! Большой выбор кормов на развес.</p>
+                    <div class="review-source">
+                        📍 Отзыв с Яндекс Карт
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact-section" id="contact">
+        <div class="section-header animate-on-scroll">
+            <div class="section-tag">Контакты</div>
+            <h2 class="section-title">Как нас найти</h2>
+            <p class="section-subtitle">Мы всегда рады видеть вас и ваших питомцев!</p>
+        </div>
+        <div class="contact-grid">
+            <div class="contact-card animate-on-scroll">
+                <h3><span>🕐</span> Режим работы</h3>
+                <div class="open-badge">
+                    <div class="open-badge-dot"></div>
+                    Открыто до 20:00
+                </div>
+                <ul class="hours-list" id="hoursList">
+                    <li class="hours-item" data-day="1">
+                        <span class="hours-day">Понедельник</span>
+                        <span class="hours-time">10:00–20:00</span>
+                    </li>
+                    <li class="hours-item" data-day="2">
+                        <span class="hours-day">Вторник</span>
+                        <span class="hours-time">10:00–20:00</span>
+                    </li>
+                    <li class="hours-item" data-day="3">
+                        <span class="hours-day">Среда</span>
+                        <span class="hours-time">10:00–20:00</span>
+                    </li>
+                    <li class="hours-item" data-day="4">
+                        <span class="hours-day">Четверг</span>
+                        <span class="hours-time">10:00–20:00</span>
+                    </li>
+                    <li class="hours-item" data-day="5">
+                        <span class="hours-day">Пятница</span>
+                        <span class="hours-time">10:00–20:00</span>
+                    </li>
+                    <li class="hours-item" data-day="6">
+                        <span class="hours-day">Суббота</span>
+                        <span class="hours-time">10:00–20:00</span>
+                    </li>
+                    <li class="hours-item" data-day="0">
+                        <span class="hours-day">Воскресенье</span>
+                        <span class="hours-time">10:00–20:00</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="contact-card animate-on-scroll">
+                <h3><span>📍</span> Связаться с нами</h3>
+                <ul class="contact-info-list">
+                    <li class="contact-info-item">
+                        <div class="contact-info-icon">📍</div>
+                        <div>
+                            <div class="contact-info-label">Адрес</div>
+                            <div class="contact-info-value">Мариупольская ул., 14Б, Калининград</div>
+                        </div>
+                    </li>
+                    <li class="contact-info-item">
+                        <div class="contact-info-icon">📞</div>
+                        <div>
+                            <div class="contact-info-label">Телефон</div>
+                            <div class="contact-info-value">
+                                <a href="tel:+79527931212">+7 (952) 793-12-12</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="contact-info-item">
+                        <div class="contact-info-icon">🕐</div>
+                        <div>
+                            <div class="contact-info-label">График</div>
+                            <div class="contact-info-value">Ежедневно 10:00–20:00</div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="map-container">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2200!2d20.5135!3d54.7104!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTTCsDQyJzM3LjQiTiAyMMKwMzAnNDguNiJF!5e0!3m2!1sru!2sru!4v1" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade"
+                        title="Карта расположения Лапоушки">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+        <div class="cta-content">
+            <h2>Приходите с питомцем! 🐾</h2>
+            <p>Ждём вас ежедневно с 10:00 до 20:00. У нас всегда есть всё необходимое для ваших любимцев!</p>
+            <a href="tel:+79527931212" class="btn btn-white">
+                📞 +7 (952) 793-12-12
+            </a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div>
+                    <div class="footer-brand">
+                        <div class="footer-logo-icon">🐾</div>
+                        <div class="footer-logo-text">Лапоушки</div>
+                    </div>
+                    <p class="footer-desc">
+                        Зоомагазин в Калининграде с широким выбором кормов, аксессуаров и товаров для ваших любимых питомцев.
+                    </p>
+                </div>
+                <div>
+                    <div class="footer-heading">Навигация</div>
+                    <ul class="footer-links">
+                        <li><a href="#home">Главная</a></li>
+                        <li><a href="#features">О нас</a></li>
+                        <li><a href="#gallery">Галерея</a></li>
+                        <li><a href="#reviews">Отзывы</a></li>
+                        <li><a href="#contact">Контакты</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="footer-heading">Контакты</div>
+                    <ul class="footer-links">
+                        <li><a href="tel:+79527931212">+7 (952) 793-12-12</a></li>
+                        <li><a href="#contact">Мариупольская ул., 14Б</a></li>
+                        <li><a href="#contact">Ежедневно 10–20</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-copy">© 2026 Лапоушки. Все права защищены.</div>
+                <div class="footer-socials">
+                    <a href="#" class="footer-social" title="VK">VK</a>
+                    <a href="#" class="footer-social" title="Telegram">TG</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu
+        const burger = document.getElementById('burger');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        burger.addEventListener('click', () => {
+            burger.classList.toggle('active');
+            mobileMenu.classList.toggle('open');
+        });
+
+        function closeMobile() {
+            burger.classList.remove('active');
+            mobileMenu.classList.remove('open');
+        }
+
+        // Highlight today's hours
+        const today = new Date().getDay();
+        const hoursItems = document.querySelectorAll('.hours-item');
+        hoursItems.forEach(item => {
+            if (parseInt(item.dataset.day) === today) {
+                item.classList.add('today');
+                const dayEl = item.querySelector('.hours-day');
+                dayEl.textContent += ' (сегодня)';
+            }
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, index * 100);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offset = 80;
+                    const targetPos = target.getBoundingClientRect().top + window.scrollY - offset;
+                    window.scrollTo({ top: targetPos, behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Update open status based on current time
+        function updateOpenStatus() {
+            const now = new Date();
+            const hours = now.getHours();
+            const isOpen = hours >= 10 && hours < 20;
+            
+            const badges = document.querySelectorAll('.hero-badge, .open-badge');
+            badges.forEach(badge => {
+                if (isOpen) {
+                    badge.innerHTML = '<div class="hero-badge-dot"></div> Сейчас открыто';
+                    badge.style.background = 'rgba(76,175,80,0.12)';
+                    badge.style.color = '#4CAF50';
+                } else {
+                    badge.innerHTML = '🔒 Сейчас закрыто';
+                    badge.style.background = 'rgba(244,67,54,0.12)';
+                    badge.style.color = '#F44336';
+                }
+            });
+        }
+        updateOpenStatus();
+    </script>
+</body>
+</html>
+
